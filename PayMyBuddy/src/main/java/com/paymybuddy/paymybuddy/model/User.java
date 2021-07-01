@@ -42,8 +42,8 @@ public class User {
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "liste_contact", joinColumns = {
-			@JoinColumn(name = "id_utilisateur_contact", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "id_utilisateur_liste", nullable = false, updatable = false) })
+			@JoinColumn(name = "id_utilisateur_liste", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "id_utilisateur_contact", nullable = false, updatable = false) })
 	private Set<User> setUser = new HashSet<>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userDebtor")
@@ -136,8 +136,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", amount="
-				+ balance + ", iban=" + iban;
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", balance="
+				+ balance + ", iban=" + iban + ", setUser=" + setUser + "]";
 	}
+	
+	
 
 }
