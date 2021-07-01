@@ -46,10 +46,10 @@ public class User {
 					@JoinColumn(name = "id_utilisateur_liste", nullable = false, updatable = false) })
 	private Set<User> setUser = new HashSet<>();
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateurByIdUtilisateurDebiteur")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userDebtor")
 	private Set<TransactionInternal> setTransactionInternal = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utilisateur")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<TransactionBanking> setTransactionBanking = new HashSet<>();
 
 	public User() {
