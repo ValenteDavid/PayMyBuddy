@@ -35,6 +35,10 @@ public class TransactionInternal {
 	@Column(name = "description", length = 50)
 	private String description;
 
+	public TransactionInternal() {
+		super();
+	}
+
 	public TransactionInternal(BigDecimal amount, String description) {
 		super();
 		this.amount = amount;
