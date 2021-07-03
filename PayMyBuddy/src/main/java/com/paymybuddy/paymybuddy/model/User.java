@@ -44,13 +44,13 @@ public class User {
 	@JoinTable(name = "liste_contact", joinColumns = {
 			@JoinColumn(name = "id_utilisateur_liste", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "id_utilisateur_contact", nullable = false, updatable = false) })
-	private Set<User> setUser = new HashSet<>();
+	private Set<User> contacts = new HashSet<>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userDebtor")
-	private Set<TransactionInternal> setTransactionInternal = new HashSet<>();
+	private Set<TransactionInternal> transactionInternals = new HashSet<>();
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<TransactionBanking> setTransactionBanking = new HashSet<>();
+	private Set<TransactionBanking> transactionBankings = new HashSet<>();
 
 	public User() {
 	}
@@ -110,34 +110,34 @@ public class User {
 		this.iban = iban;
 	}
 
-	public Set<User> getSetUser() {
-		return setUser;
+	public Set<User> getContacts() {
+		return contacts;
 	}
 
-	public void setSetUser(Set<User> setUser) {
-		this.setUser = setUser;
+	public void setContacts(Set<User> setUser) {
+		this.contacts = setUser;
 	}
 
-	public Set<TransactionInternal> getSetTransactionInternal() {
-		return setTransactionInternal;
+	public Set<TransactionInternal> getTransactionInternals() {
+		return transactionInternals;
 	}
 
-	public void setSetTransactionInternal(Set<TransactionInternal> setTransactionInternal) {
-		this.setTransactionInternal = setTransactionInternal;
+	public void setTransactionInternals(Set<TransactionInternal> setTransactionInternal) {
+		this.transactionInternals = setTransactionInternal;
 	}
 
-	public Set<TransactionBanking> getSetTransactionBanking() {
-		return setTransactionBanking;
+	public Set<TransactionBanking> getTransactionBankings() {
+		return transactionBankings;
 	}
 
-	public void setSetTransactionBanking(Set<TransactionBanking> setTransactionBanking) {
-		this.setTransactionBanking = setTransactionBanking;
+	public void setTransactionBankings(Set<TransactionBanking> setTransactionBanking) {
+		this.transactionBankings = setTransactionBanking;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", balance="
-				+ balance + ", iban=" + iban + ", setUser=" + setUser + "]";
+				+ balance + ", iban=" + iban + ", setUser=" + contacts + "]";
 	}
 	
 	
