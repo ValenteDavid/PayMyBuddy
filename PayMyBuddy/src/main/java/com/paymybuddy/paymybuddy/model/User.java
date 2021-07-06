@@ -15,6 +15,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "utilisateur")
@@ -25,21 +29,28 @@ public class User {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 
+	@Email
+	@Length(max = 254)
+	@NotNull(message = "Email cannot be null")
 	@Column(name = "email", length = 254, nullable = false, unique = true)
 	private String email;
 
+	@Length(max = 50)
 	@Column(name = "mots_de_passe", length = 50, nullable = false)
 	private String password;
 
+	@Length(max = 100)
+	@NotNull(message = "Name cannot be null")
 	@Column(name = "nom", length = 100, nullable = false)
 	private String name;
 
 	@Column(name = "solde", precision = 15, scale = 2, nullable = false)
 	private BigDecimal balance;
 
+	@Length(min=34,max = 34)
 	@Column(name = "iban", length = 34)
 	private String iban;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "liste_contact", joinColumns = {
 			@JoinColumn(name = "id_utilisateur_liste", nullable = false, updatable = false) }, inverseJoinColumns = {
@@ -48,11 +59,19 @@ public class User {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userDebtor")
 	private Set<TransactionInternal> transactionInternals = new HashSet<>();
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<TransactionBanking> transactionBankings = new HashSet<>();
 
 	public User() {
+		this.balance = BigDecimal.ZERO;
+	}
+
+	public User(String email, String password, String name) {
+		this();
+		this.email = email;
+		this.password = password;
+		this.name = name;
 	}
 
 	public User(String email, String password, String name, BigDecimal amount) {
@@ -139,7 +158,5 @@ public class User {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", balance="
 				+ balance + ", iban=" + iban + ", setUser=" + contacts + "]";
 	}
-	
-	
 
 }
