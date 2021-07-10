@@ -1,0 +1,88 @@
+<!DOCTYPE>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Transfert</title>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css} " />
+</head>
+<body>
+	<div th:replace="header :: header">...</div>
+	<h2>HOME / TRANSFERT</h2>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-9">
+				<h2>Send Money</h2>
+			</div>
+			<div class="col">
+				<a class="btn btn-primary" href="#" role="button">Add Connection</a>
+			</div>
+		</div>
+		<form action="transferTransactionInternal"
+			th:action="@{/transferTransactionInternal}" method="post">
+			<div class="row">
+
+				<div class="col-3">
+					<select class="form-select" aria-label="Default select example"
+						th:name="contactID">
+						<option selected="selected">Select A Connection</option>
+						<th:block th:each="connection : ${connections}">
+							<option th:utext="${connection.name}" th:value="${connection.id}">..</option>
+						</th:block>
+					</select>
+				</div>
+
+				<div class="col-3">
+					<input type="text" class="form-control" placeholder="Description"
+						th:name="amount" />
+				</div>
+
+				<div class="col-3">
+					<input type="text" class="form-control" placeholder="0€"
+						th:name="amount" />
+				</div>
+
+
+				<div class="col-3">
+					<input type="submit" class="btn btn-primary" value="Pay" />
+				</div>
+			</div>
+		</form>
+		<div class="row">
+			<div class="col">
+				<h2>My Transactions</h2>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-9">
+				<table class="table">
+					<tr>
+						<th>Connections</th>
+						<th>Description</th>
+						<th>Amout</th>
+					</tr>
+					<tr th:block th:each="transaction : ${transactions}">
+						<td th:text="${transaction.userCreditor.name}" />
+						<td th:text="${transaction.description}" />
+						<td th:text="${transaction.amount} + ' €'" />
+					</tr>
+				</table>
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item disabled"><a class="page-link" href="#"
+							tabindex="-1">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item disabled"><a class="page-link" href="#">Next</a>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

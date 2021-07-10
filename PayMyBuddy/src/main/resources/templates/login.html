@@ -1,0 +1,51 @@
+<!DOCTYPE>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Login</title>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css} " />
+</head>
+<body>
+
+	<div th:replace="header :: header">...</div>
+
+	<div class="container">
+		<div class="col align-self-center">
+			<div class="col-4 offset-4">
+				<h1 class="text-center">Login</h1>
+
+				<form action="#" th:action="@{/login}" method="post"
+					th:object="${user}">
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label">Email
+							address</label> <input type="email" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp"
+							th:field="*{email}" />
+					</div>
+
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label">Password</label>
+						<input type="password" class="form-control"
+							id="exampleInputPassword1" th:field="*{password}" />
+					</div>
+
+					<div class="row">
+						<div class="col-6">
+							<a href="registration" class="btn btn-primary">Sign
+								up</a>
+						</div>
+						<div class="col-6">
+							<button type="submit" class="btn btn-primary  float-end">Submit</button>
+						</div>
+					</div>
+					
+					<p style="color: red" th:text="${wrongMessage}">wrong</p>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

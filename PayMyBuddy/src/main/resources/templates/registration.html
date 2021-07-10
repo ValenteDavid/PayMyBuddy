@@ -1,0 +1,53 @@
+<!DOCTYPE>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Registration</title>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css} " />
+</head>
+<body>
+
+	<div th:replace="header :: header">...</div>
+
+	<div class="container">
+		<div class="col align-self-center">
+			<div class="col-4 offset-4">
+				<h1 class="text-center">Registration</h1>
+
+				<form action="#" th:action="@{/registration}" method="post"
+					th:object="${user}">
+					<div class="mb-3">
+						<label for="exampleInputName1" class="form-label">Name</label> <input
+							type="text" class="form-control" id="exampleInputName1"
+							th:field="*{name}" />
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label">Email
+							address</label> <input type="email" class="form-control"
+							id="exampleInputEmail1" aria-describedby="emailHelp"
+							th:field="*{email}" />
+					</div>
+
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label">Password</label>
+						<input type="password" class="form-control"
+							id="exampleInputPassword1" th:field="*{password}" />
+					</div>
+					
+					<div class="row">
+                        <div class="col-6">
+                            <a href="login" class="btn btn-primary">Sign
+                                in</a>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary  float-end">Submit</button>
+                        </div>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
