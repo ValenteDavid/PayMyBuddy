@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.paymybuddy.paymybuddy.model.TransactionBanking;
 
 @Repository
-public interface TransactionBankingRepository extends CrudRepository<TransactionBanking, Integer>{
+public interface TransactionBankingRepository extends CrudRepository<TransactionBanking, Integer> {
 
 }

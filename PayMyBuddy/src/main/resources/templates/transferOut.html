@@ -1,0 +1,133 @@
+<!DOCTYPE>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Transfert</title>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.0.1/css/bootstrap.min.css} " />
+</head>
+<body>
+	<div th:replace="header :: header">...</div>
+	<h2>HOME / TRANSFER</h2>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-6">
+				<h2>Send Money</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<h4>Balance</h4>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					<p th:text="${balance}+ ' €'">Balance amount</p>
+				</div>
+			</div>
+		</div>
+
+		<form th:action="@{/transferTransactionBankingIn}" method="post">
+			<div class="row">
+				<div class="col-6">
+					<h4>In</h4>
+				</div>
+				<div class="row">
+					<div class="col-3">
+						<input type="text" class="form-control" placeholder="Amount"
+							th:name="amount" />
+							<p style="color: red" th:text="${messageTransactionBankingIn}">wrong</p>
+					</div>
+					<div class="col-3">
+						<input type="submit" class="btn btn-primary" value="Send In" />
+					</div>
+				</div>
+
+			</div>
+		</form>	
+		<form th:action="@{/transferTransactionBankingOut}" method="post">	
+			<div class="row">
+				<div class="col-6">
+					<h4>Out</h4>
+				</div>
+				<div class="row">
+					<div class="col-3">
+						<input type="text" class="form-control" placeholder="Amount"
+							th:name="amount" />
+							<p style="color: red" th:text="${messageTransactionBankingOut}">wrong</p>
+					</div>
+					<div class="col-3">
+						<input type="submit" class="btn btn-primary" value="Send Out" />
+					</div>
+				</div>
+
+
+			</div>
+		</form>
+
+		<div class="row">
+			<div class="col">
+				<h2>My Transactions</h2>
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-9">
+				<table class="table">
+					<tr>
+						<th>Amount</th>
+					</tr>
+					<tr th:block th:each="transaction : ${transactions}">
+						<td th:text="${transaction.amount} + ' €'" />
+					</tr>
+				</table>
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item disabled"><a class="page-link" href="#"
+							tabindex="-1">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item disabled"><a class="page-link" href="#">Next</a>
+						</li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+		
+		<div class="row">
+            <div class="col">
+                <h2>Other Transactions</h2>
+            </div>
+        </div>
+		
+		<div class="row ">
+            <div class="col-9">
+                <table class="table">
+                    <tr>
+                        <th>Amount</th>
+                        <th>Connection</th>
+                    </tr>
+                    <tr th:block th:each="transaction : ${transactionsOther}">
+                        <td th:text="${transaction.amount} + ' €'" />
+                        <td th:text="${transaction.userDebtor.name}" />
+                    </tr>
+                </table>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled"><a class="page-link" href="#"
+                            tabindex="-1">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+		
+	</div>
+</body>
+</html>

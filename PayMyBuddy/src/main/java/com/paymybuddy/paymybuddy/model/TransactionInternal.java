@@ -19,7 +19,7 @@ public class TransactionInternal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	private String id;
+	private Integer id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_utilisateur_debiteur")
@@ -36,11 +36,9 @@ public class TransactionInternal {
 	private String description;
 
 	public TransactionInternal() {
-		super();
 	}
 
 	public TransactionInternal(BigDecimal amount, String description) {
-		super();
 		this.amount = amount;
 		this.description = description;
 	}
@@ -77,7 +75,7 @@ public class TransactionInternal {
 		this.description = description;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -86,5 +84,4 @@ public class TransactionInternal {
 		return "Transaction [id=" + id + ", userDebtor=" + userDebtor + ", userCreditor=" + userCreditor + ", amount="
 				+ amount + ", description=" + description + "]";
 	}
-
 }
