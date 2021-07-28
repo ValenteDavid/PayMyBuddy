@@ -67,9 +67,6 @@ class TransactionServiceTest {
 		assertEquals(new BigDecimal(1100).setScale(2), userRepository.findById(userCreditor.getId()).get().getBalance());
 
 		transactionInternal = transactionInternalRepository.findById(transactionInternalSave.getId()).get();
-		
-		System.out.println(transactionInternalSave);
-		System.out.println(transactionInternal);
 
 		assertTrue(new ReflectionEquals(transactionInternal).matches(transactionInternalSave));
 

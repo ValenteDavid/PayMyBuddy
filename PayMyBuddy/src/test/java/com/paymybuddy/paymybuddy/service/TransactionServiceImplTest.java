@@ -114,6 +114,7 @@ class TransactionServiceImplTest {
 		userCreditor.setBalance(new BigDecimal(500));
 		
 		when(userRepository.save(any())).thenReturn(userCreditor);
+		when(transactionBankingRepository.save(any())).thenReturn(new TransactionBanking(userCreditor, amount));
 
 		TransactionBanking transactionBankingSave = transactionService.addTransactionBankingIn(userCreditor, amount);
 		
@@ -131,7 +132,7 @@ class TransactionServiceImplTest {
 		BigDecimal amount = new BigDecimal(100);
 
 		when(userRepository.save(any())).thenReturn(userDebtor);
-		when(transactionBankingRepository.save(any())).thenReturn(any());
+		when(transactionBankingRepository.save(any())).thenReturn(new TransactionBanking(userCreditor, amount));
 
 		TransactionBanking transactionBankingSave = transactionService.addTransactionBankingOut(userDebtor, amount);
 		
